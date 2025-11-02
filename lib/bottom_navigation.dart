@@ -1,8 +1,10 @@
-import 'package:business_calculation/Global.dart';
-import 'package:business_calculation/components/pages/home.dart';
-import 'package:business_calculation/components/transactions/add_edit_transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'Global.dart';
+import 'components/pages/analysis_screen.dart';
+import 'components/pages/home.dart';
+import 'components/transactions/add_edit_transaction_screen.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -19,7 +21,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   void initState() {
     super.initState();
-    screen = [const Home(), const Home(), const Home()];
+    screen = [const Home(), const AnalysisScreen(), const Home()];
   }
 
   Future<void> _onFabPressed() async {
@@ -60,7 +62,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         iconSize: 25,
         unselectedFontSize: 12,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'செலவு'),
           BottomNavigationBarItem(
             icon: Icon(Icons.analytics),
             label: 'Analysis',
