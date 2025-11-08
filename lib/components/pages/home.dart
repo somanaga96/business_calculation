@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import '../../Global.dart';
 import '../../utils/date_picker/month_year_picker.dart';
+import '../cards/ProfitCard.dart';
 import '../cards/purchase_income_card.dart';
 import '../transactions/business_transactions.dart';
 
@@ -20,7 +20,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    // ✅ Set global title once the widget is created
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final global = Provider.of<Global>(context, listen: false);
       global.setAppTitle('Home');
@@ -45,24 +44,24 @@ class _HomeState extends State<Home> {
       body: Column(
         children: [
           const PurchaseIncomeCard(),
+          // ✅ Add the new Profit card here
+          const ProfitCard(),
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Left arrow
                 IconButton(
                   icon: const Icon(Icons.chevron_left),
                   onPressed: () => _changeMonth(global, -1),
                 ),
-                // Month display button
                 ElevatedButton(
                   onPressed: () => b.pickMonthYear(context, global),
                   child: Text(
                     DateFormat('MMM/yyyy').format(global.selectedDate),
                   ),
                 ),
-                // Right arrow
                 IconButton(
                   icon: const Icon(Icons.chevron_right),
                   onPressed: () => _changeMonth(global, 1),
@@ -70,7 +69,7 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          Expanded(child: const BusinessTransactions()),
+          const Expanded(child: BusinessTransactions()),
         ],
       ),
     );
