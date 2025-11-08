@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Global.dart';
-import 'components/pages/analysis_screen.dart';
+import 'components/pages/analysis/analysis_screen.dart';
 import 'components/pages/home.dart';
 import 'components/transactions/add_edit_transaction_screen.dart';
 

@@ -1,9 +1,9 @@
+import 'package:business_calculation/side_menu.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Global.dart';
-import 'bottom_navigation.dart';
 import 'firesbase/firebase_options.dart';
 
 void main() async {
@@ -23,14 +23,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Budget App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const BottomNavigation(),
-      // home:
+    return Consumer<Global>(
+      builder: (context, global, child) {
+        return MaterialApp(
+          title: 'Theme Demo',
+          theme: global.getTheme(), // ⬅️ Apply theme here
+          home: const SideMenuPage(),
+          // home: const BottomNavigation(),
+        );
+      },
     );
   }
 }

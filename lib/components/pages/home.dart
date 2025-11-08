@@ -17,6 +17,16 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final MonthYearPicker b = MonthYearPicker();
 
+  @override
+  void initState() {
+    super.initState();
+    // ✅ Set global title once the widget is created
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final global = Provider.of<Global>(context, listen: false);
+      global.setAppTitle('Home');
+    });
+  }
+
   void _changeMonth(Global global, int delta) {
     setState(() {
       final newDate = DateTime(
@@ -32,10 +42,6 @@ class _HomeState extends State<Home> {
     final global = Provider.of<Global>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text("Transactions")),
-        backgroundColor: Colors.blue,
-      ),
       body: Column(
         children: [
           const PurchaseIncomeCard(),

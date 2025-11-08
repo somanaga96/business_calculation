@@ -1,9 +1,42 @@
 import 'package:business_calculation/utils/transaction_crud/transaction_crud.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' show ThemeData, Colors;
 
 import 'components/entity/transactions.dart';
 
 class Global extends ChangeNotifier {
+  String _title = 'Home';
+
+  String getAppTitle() => _title;
+
+  void setAppTitle(String title) {
+    _title = title;
+    notifyListeners(); // 👈 important: updates UI when title changes
+  }
+
+  bool _isDarkMode = false;
+
+  bool get isDarkMode => _isDarkMode;
+  final ThemeData _lightTheme = ThemeData(
+    primarySwatch: Colors.blue,
+    brightness: Brightness.light,
+  );
+
+  final ThemeData _darkTheme = ThemeData(
+    primarySwatch: Colors.blue,
+    brightness: Brightness.dark,
+  );
+
+  ThemeData getTheme() {
+    return _isDarkMode ? _darkTheme : _lightTheme;
+  }
+
+  // Method to toggle theme mode
+  void toggleTheme() {
+    _isDarkMode = !_isDarkMode; // Toggle the theme mode
+    notifyListeners();
+  }
+
   final TransactionCrud _crud = TransactionCrud();
   bool isLoading = false;
   List<Transactions> transactionList = [];
@@ -79,6 +112,7 @@ class Global extends ChangeNotifier {
     }
     notifyListeners();
   }
+
   List<Transactions> getFilteredTransactions({
     String? category,
     DateTime? startDate,
@@ -92,7 +126,9 @@ class Global extends ChangeNotifier {
     List<Transactions> filtered = transactionList;
 
     if (category != null && category.isNotEmpty) {
-      filtered = filtered.where((t) => t.category?.toLowerCase() == category.toLowerCase()).toList();
+      filtered = filtered
+          .where((t) => t.category?.toLowerCase() == category.toLowerCase())
+          .toList();
     }
 
     if (startDate != null) {
@@ -112,7 +148,9 @@ class Global extends ChangeNotifier {
     }
 
     if (nameQuery != null && nameQuery.isNotEmpty) {
-      filtered = filtered.where((t) => t.name.toLowerCase().contains(nameQuery.toLowerCase())).toList();
+      filtered = filtered
+          .where((t) => t.name.toLowerCase().contains(nameQuery.toLowerCase()))
+          .toList();
     }
 
     filtered.sort((a, b) {
