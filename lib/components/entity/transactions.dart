@@ -8,7 +8,7 @@ class Transactions {
   DateTime date;
   String notes;
   String name;
-  String? category; 
+  String? category;
   bool? credit;
 
   Transactions({
@@ -17,7 +17,7 @@ class Transactions {
     required this.date,
     required this.notes,
     required this.name,
-    this.category, 
+    this.category,
     this.credit,
   });
 
@@ -32,8 +32,9 @@ class Transactions {
       date: dateTime,
       notes: map['comment'] ?? '',
       name: map['name'] ?? '',
-      category: map['category'] ?? 'other', // Default to empty string if null
-      credit: map['credit']
+      category: map['category'] ?? 'other',
+      // Default to empty string if null
+      credit: map['credit'],
     );
   }
 
@@ -44,7 +45,7 @@ class Transactions {
       'comment': notes,
       'name': name,
       'category': category ?? 'other', // Ensure non-null when saving
-      'credit':credit
+      'credit': credit,
     };
   }
 }
