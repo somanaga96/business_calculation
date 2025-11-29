@@ -39,7 +39,7 @@ class ProfitCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  isProfit ? "நீங்கள் லாபத்தில் உள்ளீர்கள்" : "நீங்கள் இழப்பில் உள்ளீர்கள்",
+                  isProfit ? "நீங்கள் லாபத்தில் உள்ளீர்கள் :" : "நீங்கள் இழப்பில் உள்ளீர்கள்",
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[800],
