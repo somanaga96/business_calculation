@@ -44,7 +44,7 @@ class Transactions {
       'comment': notes,
       'name': name,
       'category': category ?? 'other', // Ensure non-null when saving
-      'credi':credit
+      'credit':credit
     };
   }
 }

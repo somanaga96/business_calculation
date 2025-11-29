@@ -189,6 +189,7 @@ class _AddEditTransactionScreenState extends State<AddEditTransactionScreen> {
       amount: int.tryParse(amount) ?? 0,
       notes: noteController.text.trim(),
       category: isCredit ? 'Credit' : 'Debit',
+      credit: isCredit,
       // Store type
       date: selectedDate!,
     );
